@@ -1,0 +1,25 @@
+---
+title: "Final project"
+output: html_document
+---
+
+#Final project rubric
+
+x pts | Creatte randomly-simulated trees
+
+x pts | Compared shared clades between (my tree) and simulated trees
+
+x pts |
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r cars}
+summary(cars)
+```
+
