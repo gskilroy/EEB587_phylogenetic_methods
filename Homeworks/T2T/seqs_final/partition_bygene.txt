@@ -1,0 +1,6 @@
+DNA, Aligned_Cluster_0_Ntax_14_Gene_ = 1-620
+DNA, Aligned_Cluster_1_Ntax_12_Gene_ = 621-1356
+DNA, Aligned_Cluster_14_Ntax_13_Gene_cytochrome_b = 1357-2502
+DNA, Aligned_Cluster_3_Ntax_13_Gene_nadh_dehydrogenase_subunit_2 = 2503-3071
+DNA, Aligned_Cluster_7_Ntax_12_Gene_breast_and_ovarian_cancer_susceptibility_1 = 3072-4101
+DNA, Aligned_mtDNA = 4102-5416

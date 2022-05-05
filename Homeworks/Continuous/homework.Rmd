@@ -1,0 +1,60 @@
+---
+title: "Continuous trait evolution homework"
+output: pdf_document
+
+---
+
+```{r}
+library(ape)
+library(geiger)
+library(OUwie)
+library(phytools)
+library(rmarkdown)
+
+tree<-read.tree(text=RCurl::getURL("https://raw.githubusercontent.com/lukejharmon/ilhabela/master/workingFiles/continuousModels/anolis.phy"))
+plot(tree)
+
+continuous.data <- read.csv(file="continuous_data.csv", row.names = 1)
+continuous.data.SVL <- continuous.data$SVL
+names(continuous.data.SVL) <- rownames(continuous.data)
+
+
+cleaned.continuous <-geiger::treedata(phy=tree, data = continuous.data, sort=TRUE)
+visualize.continuous <- geiger::treedata(phy = tree, data = continuous.data)
+
+tree.CMap <- contMap(tree,continuous.data.SVL)
+```
+
+
+```{r}
+BM1 <- geiger::fitContinuous(tree, continuous.data.SVL, model = "BM")
+print(paste("The rate of evolution for SLV", "0.136160", "in units of", "meters"))
+```
+
+#What is the rate of evolution of your trait on the tree? - The rate of evolution for SLV is 0.136160 in units of meters
+
+
+```{r}
+OU1 <- fitContinuous(tree, continuous.data.SVL, model="OU")
+plot(tree, show.tip.label=FALSE)
+ou.tree <- rescale(tree, model="OU", alpha=0, sigsq=0.136160)
+plot(ou.tree)
+```
+
+#How are the trees different? - Using the 'rescale' function changes the branch lengths substantially between the standard OU tree and the scaled OU tree. 
+
+
+```{r`}  
+help(package=geiger)
+
+aic.scores <- c(13.400807,15.400807)
+names(aic.scores) <- c("BM","OU")
+aicw(aic.scores)
+
+AIC.BM1 <- 13.400807
+AIC.OU1 <- 15.400807
+delta.AIC.BM1 <- 0
+delta.AIC.OU1 <- 2
+
+pp.OUwie <- OUwie(phy = tree, data = continuous.data.SVL, model = "OUM", algorithm = "invert", quiet = TRUE)
+```

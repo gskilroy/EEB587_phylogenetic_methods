@@ -1,0 +1,220 @@
+-------------------------------------------------
+phylotaR: Implementation of PhyLoTa in R [v1.2.0]
+-------------------------------------------------
+Checking for valid NCBI BLAST+ Tools ...
+Found: [/Users/gracekilroy/Downloads/ncbi/bin/makeblastdb]
+Found: [/Users/gracekilroy/Downloads/ncbi/bin/blastn]
+. . Running makeblastdb
+Setting up pipeline with the following parameters:
+. blstn          [/Users/gracekilroy/Downloads/ncbi/bin/blastn]
+. btchsz         [100]
+. date           [2022-02-24]
+. db_only        [FALSE]
+. mdlthrs        [3000]
+. mkblstdb       [/Users/gracekilroy/Downloads/ncbi/bin/makeblastdb]
+. mncvrg         [51]
+. mnsql          [250]
+. multiple_ids   [FALSE]
+. mxevl          [1e-10]
+. mxnds          [1e+05]
+. mxrtry         [100]
+. mxsql          [2000]
+. mxsqs          [50000]
+. ncps           [1]
+. outfmt         [6 qseqid sseqid pident length evalue qcovs qcovhsp]
+. outsider       [FALSE]
+. srch_trm       [NOT predicted[TI] NOT "whole genome shotgun"[TI] NOT unverified[TI] NOT "synthetic construct"[Organism] NOT refseq[filter] NOT TSA[Keyword]]
+. txid           [211520]
+. v              [FALSE]
+. wd             [/Users/gracekilroy/Tax2Tree/phylotaR_run]
+. wt_tms         [1, 3, 6 ...]
+-------------------------------------------------
+---------------------------------------------------
+Running pipeline on [unix] at [2022-02-24 06:42:19]
+---------------------------------------------------
+Running stages: taxise, download, cluster, cluster2
+--------------------------------------------
+Starting stage TAXISE: [2022-02-24 06:42:19]
+--------------------------------------------
+Searching taxonomic IDs ...
+Downloading taxonomic records ...
+. [1-64]
+Generating taxonomic dictionary ...
+---------------------------------------------
+Completed stage TAXISE: [2022-02-24 06:42:23]
+---------------------------------------------
+----------------------------------------------
+Starting stage DOWNLOAD: [2022-02-24 06:42:23]
+----------------------------------------------
+Identifying suitable clades ...
+Identified [1] suitable clades.
+Downloading hierarchically ...
+Working on parent [id 211520]: [1/1] ...
+. + whole subtree ...
+. . Downloading [300 sqs] ...
+. . . [1-100]
+. . . [101-200]
+. . . [201-300]
+Successfully retrieved [300 sqs] in total.
+-----------------------------------------------
+Completed stage DOWNLOAD: [2022-02-24 06:42:43]
+-----------------------------------------------
+---------------------------------------------
+Starting stage CLUSTER: [2022-02-24 06:42:43]
+---------------------------------------------
+Working from [id 211520] down hierarchy
+. + direct [id 211520 (genus)]
+. + subtree [id 211520 (genus)]
+. . BLASTing [300 sqs] ....
+. . Running makeblastdb
+. . Running blastn
+. . Removed [2548/9696] hits due to insufficient coverage
+. . Identified [17] clusters
+. + parent [id 211520]
+. . + subtree [id 2770272 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770271 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770270 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770269 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770268 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770267 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770266 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770265 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770264 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770263 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770262 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770261 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770260 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770259 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770258 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770257 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770256 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770255 (species)]
+. + parent [id 211520]
+. . + subtree [id 2770233 (species)]
+. + parent [id 211520]
+. . + direct [id 2632057 (no rank)]
+. . + subtree [id 2632057 (no rank)]
+. . . BLASTing [12 sqs] ....
+. . . Removed [0/46] hits due to insufficient coverage
+. . . Identified [5] clusters
+. . + parent [id 2632057]
+. . . + subtree [id 2770273 (species)]
+. . + parent [id 2632057]
+. . . + subtree [id 2659945 (species)]
+. . + parent [id 2632057]
+. . . + subtree [id 2659944 (species)]
+. . + parent [id 2632057]
+. . . + subtree [id 2659943 (species)]
+. . + parent [id 2632057]
+. . . + subtree [id 2659942 (species)]
+. . + parent [id 2632057]
+. . . + subtree [id 271146 (species)]
+. . + parent [id 2632057]
+. . . + subtree [id 271145 (species)]
+. + parent [id 211520]
+. . + subtree [id 612697 (species)]
+. + parent [id 211520]
+. . + subtree [id 612696 (species)]
+. + parent [id 211520]
+. . + subtree [id 612695 (species)]
+. + parent [id 211520]
+. . + subtree [id 612694 (species)]
+. + parent [id 211520]
+. . + subtree [id 612693 (species)]
+. + parent [id 211520]
+. . + subtree [id 612692 (species)]
+. + parent [id 211520]
+. . + subtree [id 484388 (species)]
+. + parent [id 211520]
+. . + subtree [id 484386 (species)]
+. + parent [id 211520]
+. . + subtree [id 484385 (species)]
+. + parent [id 211520]
+. . + subtree [id 484384 (species)]
+. + parent [id 211520]
+. . + subtree [id 484383 (species)]
+. + parent [id 211520]
+. . + subtree [id 484382 (species)]
+. + parent [id 211520]
+. . + subtree [id 484381 (species)]
+. + parent [id 211520]
+. . + subtree [id 484380 (species)]
+. + parent [id 211520]
+. . + subtree [id 484379 (species)]
+. + parent [id 211520]
+. . + subtree [id 484378 (species)]
+. + parent [id 211520]
+. . + subtree [id 484377 (species)]
+. + parent [id 211520]
+. . + subtree [id 271149 (species)]
+. + parent [id 211520]
+. . + subtree [id 271148 (species)]
+. + parent [id 211520]
+. . + subtree [id 271147 (species)]
+. + parent [id 211520]
+. . + subtree [id 271144 (species)]
+. + parent [id 211520]
+. . + subtree [id 271143 (species)]
+. + parent [id 211520]
+. . + subtree [id 271142 (species)]
+. + parent [id 211520]
+. . + subtree [id 271141 (species)]
+. + parent [id 211520]
+. . + subtree [id 271140 (species)]
+. + parent [id 211520]
+. . + subtree [id 271139 (species)]
+. + parent [id 211520]
+. . + subtree [id 271138 (species)]
+. + parent [id 211520]
+. . + subtree [id 271137 (species)]
+. + parent [id 211520]
+. . + subtree [id 271136 (species)]
+. + parent [id 211520]
+. . + subtree [id 271135 (species)]
+. + parent [id 211520]
+. . + subtree [id 271134 (species)]
+. + parent [id 211520]
+. . + subtree [id 271133 (species)]
+. + parent [id 211520]
+. . + subtree [id 271132 (species)]
+. + parent [id 211520]
+. . + subtree [id 262032 (species)]
+. + parent [id 211520]
+. . + subtree [id 212103 (species)]
+. + parent [id 211520]
+. . + subtree [id 211521 (species)]
+[1/1]
+----------------------------------------------
+Completed stage CLUSTER: [2022-02-24 06:42:44]
+----------------------------------------------
+-----------------------------------------------
+Starting stage CLUSTER^2: [2022-02-24 06:42:44]
+-----------------------------------------------
+Loading clusters ...
+Done. Only one cluster set -- skipping cluster^2
+Dropping all clusters of < 3 sqs ...
+Renumbering clusters ...
+Saving ...
+------------------------------------------------
+Completed stage CLUSTER^2: [2022-02-24 06:42:44]
+------------------------------------------------
+-------------------------------------------
+Completed pipeline at [2022-02-24 06:42:44]
+-------------------------------------------

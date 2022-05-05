@@ -1,0 +1,161 @@
+#
+#model:
+#
+#<?xml version="1.0" encoding="UTF-8" standalone="no"?><input id="posterior" spec="beast.core.util.CompoundDistribution">
+#    <distribution id="prior" spec="beast.core.util.CompoundDistribution">
+#        <distribution id="BirthDeath.t:tree" spec="beast.evolution.speciation.BirthDeathGernhard08Model">
+#            <parameter id="BDDeathRate.t:tree" lower="0.0" name="relativeDeathRate" spec="beast.core.parameter.RealParameter" upper="1.0">0.5</parameter>
+#            <parameter id="BDBirthRate.t:tree" lower="0.0" name="birthDiffRate" spec="beast.core.parameter.RealParameter" upper="10000.0">1.0</parameter>
+#            <tree id="Tree.t:tree" spec="beast.evolution.tree.Tree">
+#                <taxonset id="TaxonSet.noncoding" spec="beast.evolution.alignment.TaxonSet">
+#                    <alignment filter="1,458-659,897-898" id="noncoding" spec="beast.evolution.alignment.FilteredAlignment">
+#                    </alignment>
+#                </taxonset>
+#            </tree>
+#        </distribution>
+#        <prior id="BirthRatePrior.t:tree" name="distribution" x="@BDBirthRate.t:tree">
+#            <Uniform id="Uniform.17" name="distr" upper="1000.0"/>
+#        </prior>
+#        <prior id="DeathRatePrior.t:tree" name="distribution" x="@BDDeathRate.t:tree">
+#            <Uniform id="Uniform.18" name="distr"/>
+#        </prior>
+#        <prior id="FrequenciesPrior.s:1stpos" name="distribution">
+#            <parameter dimension="4" id="freqParameter.s:1stpos" lower="0.0" name="x" spec="beast.core.parameter.RealParameter" upper="1.0">0.25</parameter>
+#            <Uniform id="Uniform.15.1stpos" name="distr"/>
+#        </prior>
+#        <prior id="FrequenciesPrior.s:2ndpos" name="distribution">
+#            <parameter dimension="4" id="freqParameter.s:2ndpos" lower="0.0" name="x" spec="beast.core.parameter.RealParameter" upper="1.0">0.25</parameter>
+#            <Uniform id="Uniform.15.2ndpos" name="distr"/>
+#        </prior>
+#        <prior id="FrequenciesPrior.s:3rdpos" name="distribution">
+#            <parameter dimension="4" id="freqParameter.s:3rdpos" lower="0.0" name="x" spec="beast.core.parameter.RealParameter" upper="1.0">0.25</parameter>
+#            <Uniform id="Uniform.15.3rdpos" name="distr"/>
+#        </prior>
+#        <prior id="FrequenciesPrior.s:sites" name="distribution">
+#            <parameter dimension="4" id="freqParameter.s:sites" lower="0.0" name="x" spec="beast.core.parameter.RealParameter" upper="1.0">0.25</parameter>
+#            <Uniform id="Uniform.15" name="distr"/>
+#        </prior>
+#        <prior id="GammaShapePrior.s:1stpos" name="distribution">
+#            <parameter id="gammaShape.s:1stpos" name="x" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            <Exponential id="Exponential.1.1stpos" name="distr">
+#                <parameter estimate="false" id="RealParameter.1.1stpos" name="mean" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            </Exponential>
+#        </prior>
+#        <prior id="GammaShapePrior.s:2ndpos" name="distribution">
+#            <parameter id="gammaShape.s:2ndpos" name="x" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            <Exponential id="Exponential.1.2ndpos" name="distr">
+#                <parameter estimate="false" id="RealParameter.1.2ndpos" name="mean" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            </Exponential>
+#        </prior>
+#        <prior id="GammaShapePrior.s:3rdpos" name="distribution">
+#            <parameter id="gammaShape.s:3rdpos" name="x" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            <Exponential id="Exponential.1.3rdpos" name="distr">
+#                <parameter estimate="false" id="RealParameter.1.3rdpos" name="mean" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            </Exponential>
+#        </prior>
+#        <prior id="GammaShapePrior.s:sites" name="distribution">
+#            <parameter id="gammaShape.s:sites" name="x" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            <Exponential id="Exponential.1" name="distr">
+#                <parameter estimate="false" id="RealParameter.1" name="mean" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            </Exponential>
+#        </prior>
+#        <prior id="KappaPrior.s:1stpos" name="distribution">
+#            <parameter id="kappa.s:1stpos" lower="0.0" name="x" spec="beast.core.parameter.RealParameter">2.0</parameter>
+#            <LogNormal id="LogNormalDistributionModel.0.1stpos" name="distr">
+#                <parameter estimate="false" id="RealParameter.5.1stpos" name="M" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="RealParameter.6.1stpos" name="S" spec="beast.core.parameter.RealParameter">1.25</parameter>
+#            </LogNormal>
+#        </prior>
+#        <prior id="KappaPrior.s:2ndpos" name="distribution">
+#            <parameter id="kappa.s:2ndpos" lower="0.0" name="x" spec="beast.core.parameter.RealParameter">2.0</parameter>
+#            <LogNormal id="LogNormalDistributionModel.0.2ndpos" name="distr">
+#                <parameter estimate="false" id="RealParameter.5.2ndpos" name="M" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="RealParameter.6.2ndpos" name="S" spec="beast.core.parameter.RealParameter">1.25</parameter>
+#            </LogNormal>
+#        </prior>
+#        <prior id="KappaPrior.s:3rdpos" name="distribution">
+#            <parameter id="kappa.s:3rdpos" lower="0.0" name="x" spec="beast.core.parameter.RealParameter">2.0</parameter>
+#            <LogNormal id="LogNormalDistributionModel.0.3rdpos" name="distr">
+#                <parameter estimate="false" id="RealParameter.5.3rdpos" name="M" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="RealParameter.6.3rdpos" name="S" spec="beast.core.parameter.RealParameter">1.25</parameter>
+#            </LogNormal>
+#        </prior>
+#        <prior id="KappaPrior.s:sites" name="distribution">
+#            <parameter id="kappa.s:sites" lower="0.0" name="x" spec="beast.core.parameter.RealParameter">2.0</parameter>
+#            <LogNormal id="LogNormalDistributionModel.0" name="distr">
+#                <parameter estimate="false" id="RealParameter.5" name="M" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="RealParameter.6" name="S" spec="beast.core.parameter.RealParameter">1.25</parameter>
+#            </LogNormal>
+#        </prior>
+#        <prior id="MeanRatePrior.c:clock" name="distribution">
+#            <parameter id="ucldMean.c:clock" name="x" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#            <Uniform id="Uniform.16" name="distr" upper="Infinity"/>
+#        </prior>
+#        <prior id="ucldStdevPrior.c:clock" name="distribution">
+#            <parameter id="ucldStdev.c:clock" lower="0.0" name="x" spec="beast.core.parameter.RealParameter">0.1</parameter>
+#            <Gamma id="Gamma.0" name="distr">
+#                <parameter estimate="false" id="RealParameter.8" name="alpha" spec="beast.core.parameter.RealParameter">0.5396</parameter>
+#                <parameter estimate="false" id="RealParameter.9" name="beta" spec="beast.core.parameter.RealParameter">0.3819</parameter>
+#            </Gamma>
+#        </prior>
+#        <distribution id="human-chimp.prior" monophyletic="true" spec="beast.math.distributions.MRCAPrior" tree="@Tree.t:tree">
+#            <taxonset id="human-chimp" spec="beast.evolution.alignment.TaxonSet">
+#                <taxon id="sapiens" spec="beast.evolution.alignment.Taxon"/>
+#                <taxon id="pan" spec="beast.evolution.alignment.Taxon"/>
+#            </taxonset>
+#            <LogNormal id="LogNormalDistributionModel.1" meanInRealSpace="true" name="distr">
+#                <parameter estimate="false" id="RealParameter.10" name="M" spec="beast.core.parameter.RealParameter">6.0</parameter>
+#                <parameter estimate="false" id="RealParameter.11" lower="0.0" name="S" spec="beast.core.parameter.RealParameter" upper="5.0">0.095</parameter>
+#            </LogNormal>
+#        </distribution>
+#    </distribution>
+#    <distribution id="likelihood" spec="beast.core.util.CompoundDistribution" useThreads="true">
+#        <distribution data="@noncoding" id="treeLikelihood.noncoding" spec="beast.evolution.likelihood.ThreadedTreeLikelihood" tree="@Tree.t:tree">
+#            <siteModel gammaCategoryCount="4" id="SiteModel.s:sites" shape="@gammaShape.s:sites" spec="beast.evolution.sitemodel.SiteModel">
+#                <parameter id="mutationRate.s:sites" name="mutationRate" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="proportionInvariant.s:sites" lower="0.0" name="proportionInvariant" spec="beast.core.parameter.RealParameter" upper="1.0">0.0</parameter>
+#                <substModel id="hky.s:sites" kappa="@kappa.s:sites" spec="beast.evolution.substitutionmodel.HKY">
+#                    <frequencies frequencies="@freqParameter.s:sites" id="estimatedFreqs.s:sites" spec="beast.evolution.substitutionmodel.Frequencies"/>
+#                </substModel>
+#            </siteModel>
+#            <branchRateModel clock.rate="@ucldMean.c:clock" id="RelaxedClock.c:clock" spec="beast.evolution.branchratemodel.UCRelaxedClockModel" tree="@Tree.t:tree">
+#                <LogNormal S="@ucldStdev.c:clock" id="LogNormalDistributionModel.c:clock" meanInRealSpace="true" name="distr">
+#                    <parameter estimate="false" id="RealParameter.7" lower="0.0" name="M" spec="beast.core.parameter.RealParameter" upper="1.0">1.0</parameter>
+#                </LogNormal>
+#                <rateCategories dimension="22" id="rateCategories.c:clock" spec="beast.core.parameter.IntegerParameter">1</rateCategories>
+#            </branchRateModel>
+#        </distribution>
+#        <distribution branchRateModel="@RelaxedClock.c:clock" id="treeLikelihood.1stpos" spec="beast.evolution.likelihood.ThreadedTreeLikelihood" tree="@Tree.t:tree">
+#            <data data="@primate-mtDNA" filter="2,5,8,11,14,17,20,23,26,29,32,35,38,41,44,47,50,53,56,59,62,65,68,71,74,77,80,83,86,89,92,95,98,101,104,107,110,113,116,119,122,125,128,131,134,137,140,143,146,149,152,155,158,161,164,167,170,173,176,179,182,185,188,191,194,197,200,203,206,209,212,215,218,221,224,227,230,233,236,239,242,245,248,251,254,257,260,263,266,269,272,275,278,281,284,287,290,293,296,299,302,305,308,311,314,317,320,323,326,329,332,335,338,341,344,347,350,353,356,359,362,365,368,371,374,377,380,383,386,389,392,395,398,401,404,407,410,413,416,419,422,425,428,431,434,437,440,443,446,449,452,455,660,663,666,669,672,675,678,681,684,687,690,693,696,699,702,705,708,711,714,717,720,723,726,729,732,735,738,741,744,747,750,753,756,759,762,765,768,771,774,777,780,783,786,789,792,795,798,801,804,807,810,813,816,819,822,825,828,831,834,837,840,843,846,849,852,855,858,861,864,867,870,873,876,879,882,885,888,891,894" id="1stpos" spec="beast.evolution.alignment.FilteredAlignment"/>
+#            <siteModel gammaCategoryCount="4" id="SiteModel.s:1stpos" shape="@gammaShape.s:1stpos" spec="beast.evolution.sitemodel.SiteModel">
+#                <parameter id="mutationRate.s:1stpos" name="mutationRate" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="proportionInvariant.s:1stpos" lower="0.0" name="proportionInvariant" spec="beast.core.parameter.RealParameter" upper="1.0">0.0</parameter>
+#                <substModel id="hky.s:1stpos" kappa="@kappa.s:1stpos" spec="beast.evolution.substitutionmodel.HKY">
+#                    <frequencies frequencies="@freqParameter.s:1stpos" id="estimatedFreqs.s:1stpos" spec="beast.evolution.substitutionmodel.Frequencies"/>
+#                </substModel>
+#            </siteModel>
+#        </distribution>
+#        <distribution branchRateModel="@RelaxedClock.c:clock" id="treeLikelihood.2ndpos" spec="beast.evolution.likelihood.ThreadedTreeLikelihood" tree="@Tree.t:tree">
+#            <data data="@primate-mtDNA" filter="3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60,63,66,69,72,75,78,81,84,87,90,93,96,99,102,105,108,111,114,117,120,123,126,129,132,135,138,141,144,147,150,153,156,159,162,165,168,171,174,177,180,183,186,189,192,195,198,201,204,207,210,213,216,219,222,225,228,231,234,237,240,243,246,249,252,255,258,261,264,267,270,273,276,279,282,285,288,291,294,297,300,303,306,309,312,315,318,321,324,327,330,333,336,339,342,345,348,351,354,357,360,363,366,369,372,375,378,381,384,387,390,393,396,399,402,405,408,411,414,417,420,423,426,429,432,435,438,441,444,447,450,453,456,661,664,667,670,673,676,679,682,685,688,691,694,697,700,703,706,709,712,715,718,721,724,727,730,733,736,739,742,745,748,751,754,757,760,763,766,769,772,775,778,781,784,787,790,793,796,799,802,805,808,811,814,817,820,823,826,829,832,835,838,841,844,847,850,853,856,859,862,865,868,871,874,877,880,883,886,889,892,895" id="2ndpos" spec="beast.evolution.alignment.FilteredAlignment"/>
+#            <siteModel gammaCategoryCount="4" id="SiteModel.s:2ndpos" shape="@gammaShape.s:2ndpos" spec="beast.evolution.sitemodel.SiteModel">
+#                <parameter id="mutationRate.s:2ndpos" name="mutationRate" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="proportionInvariant.s:2ndpos" lower="0.0" name="proportionInvariant" spec="beast.core.parameter.RealParameter" upper="1.0">0.0</parameter>
+#                <substModel id="hky.s:2ndpos" kappa="@kappa.s:2ndpos" spec="beast.evolution.substitutionmodel.HKY">
+#                    <frequencies frequencies="@freqParameter.s:2ndpos" id="estimatedFreqs.s:2ndpos" spec="beast.evolution.substitutionmodel.Frequencies"/>
+#                </substModel>
+#            </siteModel>
+#        </distribution>
+#        <distribution branchRateModel="@RelaxedClock.c:clock" id="treeLikelihood.3rdpos" spec="beast.evolution.likelihood.ThreadedTreeLikelihood" tree="@Tree.t:tree">
+#            <data data="@primate-mtDNA" filter="4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,118,121,124,127,130,133,136,139,142,145,148,151,154,157,160,163,166,169,172,175,178,181,184,187,190,193,196,199,202,205,208,211,214,217,220,223,226,229,232,235,238,241,244,247,250,253,256,259,262,265,268,271,274,277,280,283,286,289,292,295,298,301,304,307,310,313,316,319,322,325,328,331,334,337,340,343,346,349,352,355,358,361,364,367,370,373,376,379,382,385,388,391,394,397,400,403,406,409,412,415,418,421,424,427,430,433,436,439,442,445,448,451,454,457,662,665,668,671,674,677,680,683,686,689,692,695,698,701,704,707,710,713,716,719,722,725,728,731,734,737,740,743,746,749,752,755,758,761,764,767,770,773,776,779,782,785,788,791,794,797,800,803,806,809,812,815,818,821,824,827,830,833,836,839,842,845,848,851,854,857,860,863,866,869,872,875,878,881,884,887,890,893,896" id="3rdpos" spec="beast.evolution.alignment.FilteredAlignment"/>
+#            <siteModel gammaCategoryCount="4" id="SiteModel.s:3rdpos" shape="@gammaShape.s:3rdpos" spec="beast.evolution.sitemodel.SiteModel">
+#                <parameter id="mutationRate.s:3rdpos" name="mutationRate" spec="beast.core.parameter.RealParameter">1.0</parameter>
+#                <parameter estimate="false" id="proportionInvariant.s:3rdpos" lower="0.0" name="proportionInvariant" spec="beast.core.parameter.RealParameter" upper="1.0">0.0</parameter>
+#                <substModel id="hky.s:3rdpos" kappa="@kappa.s:3rdpos" spec="beast.evolution.substitutionmodel.HKY">
+#                    <frequencies frequencies="@freqParameter.s:3rdpos" id="estimatedFreqs.s:3rdpos" spec="beast.evolution.substitutionmodel.Frequencies"/>
+#                </substModel>
+#            </siteModel>
+#        </distribution>
+#    </distribution>
+#</input>
+#
+Sample	posterior	likelihood	prior	treeLikelihood.1stpos	treeLikelihood.2ndpos	treeLikelihood.3rdpos	treeLikelihood.noncoding	TreeHeight	gammaShape.1stpos	gammaShape.2ndpos	gammaShape.3rdpos	gammaShape.sites	kappa.1stpos	kappa.2ndpos	kappa.3rdpos	kappa.sites	mutationRate.1stpos	mutationRate.2ndpos	mutationRate.3rdpos	mutationRate.sites	ucldStdev	rate.mean	rate.variance	rate.coefficientOfVariation	logP(mrca(human-chimp))	mrca.age(human-chimp)	ucldMean	BirthDeath	BDBirthRate	BDDeathRate	freqParameter.1stpos.1	freqParameter.1stpos.2	freqParameter.1stpos.3	freqParameter.1stpos.4	freqParameter.2ndpos.1	freqParameter.2ndpos.2	freqParameter.2ndpos.3	freqParameter.2ndpos.4	freqParameter.3rdpos.1	freqParameter.3rdpos.2	freqParameter.3rdpos.3	freqParameter.3rdpos.4	freqParameter.sites.1	freqParameter.sites.2	freqParameter.sites.3	freqParameter.sites.4

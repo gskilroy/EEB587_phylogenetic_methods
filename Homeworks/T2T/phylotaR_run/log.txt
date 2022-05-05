@@ -1,0 +1,176 @@
+-------------------------------------------------
+phylotaR: Implementation of PhyLoTa in R [v1.2.0]
+-------------------------------------------------
+Checking for valid NCBI BLAST+ Tools ...
+Found: [/Users/gracekilroy/Downloads/ncbi/bin/makeblastdb]
+Found: [/Users/gracekilroy/Downloads/ncbi/bin/blastn]
+. . Running makeblastdb
+Setting up pipeline with the following parameters:
+. blstn          [/Users/gracekilroy/Downloads/ncbi/bin/blastn]
+. btchsz         [100]
+. date           [2022-02-24]
+. db_only        [FALSE]
+. mdlthrs        [3000]
+. mkblstdb       [/Users/gracekilroy/Downloads/ncbi/bin/makeblastdb]
+. mncvrg         [51]
+. mnsql          [250]
+. multiple_ids   [FALSE]
+. mxevl          [1e-10]
+. mxnds          [1e+05]
+. mxrtry         [100]
+. mxsql          [2000]
+. mxsqs          [50000]
+. ncps           [1]
+. outfmt         [6 qseqid sseqid pident length evalue qcovs qcovhsp]
+. outsider       [FALSE]
+. srch_trm       [NOT predicted[TI] NOT "whole genome shotgun"[TI] NOT unverified[TI] NOT "synthetic construct"[Organism] NOT refseq[filter] NOT TSA[Keyword]]
+. txid           [9324]
+. v              [FALSE]
+. wd             [/Users/gracekilroy/T2T/phylotaR_run]
+. wt_tms         [1, 3, 6 ...]
+-------------------------------------------------
+---------------------------------------------------
+Running pipeline on [unix] at [2022-02-24 12:20:48]
+---------------------------------------------------
+Running stages: taxise, download, cluster, cluster2
+--------------------------------------------
+Starting stage TAXISE: [2022-02-24 12:20:48]
+--------------------------------------------
+Searching taxonomic IDs ...
+Downloading taxonomic records ...
+. [1-28]
+Generating taxonomic dictionary ...
+---------------------------------------------
+Completed stage TAXISE: [2022-02-24 12:20:50]
+---------------------------------------------
+----------------------------------------------
+Starting stage DOWNLOAD: [2022-02-24 12:20:50]
+----------------------------------------------
+Identifying suitable clades ...
+Identified [1] suitable clades.
+Downloading hierarchically ...
+Working on parent [id 9324]: [1/1] ...
+. + whole subtree ...
+. . Downloading [1000 sqs] ...
+. . . [1-100]
+. . . [101-200]
+. . . [201-300]
+. . . [301-400]
+. . . [401-500]
+. . . [501-600]
+. . . [601-700]
+. . . [701-800]
+. . . [801-900]
+. . . [901-1000]
+Successfully retrieved [1000 sqs] in total.
+-----------------------------------------------
+Completed stage DOWNLOAD: [2022-02-24 12:21:39]
+-----------------------------------------------
+---------------------------------------------
+Starting stage CLUSTER: [2022-02-24 12:21:39]
+---------------------------------------------
+Working from [id 9324] down hierarchy
+. + direct [id 9324 (genus)]
+. + subtree [id 9324 (genus)]
+. . BLASTing [1000 sqs] ....
+. . Running makeblastdb
+. . Running blastn
+. . Removed [9173/160998] hits due to insufficient coverage
+. . Identified [17] clusters
+. + parent [id 9324]
+. . + subtree [id 1737130 (species)]
+. + parent [id 9324]
+. . + subtree [id 1648445 (species)]
+. + parent [id 9324]
+. . + subtree [id 1119526 (species)]
+. + parent [id 9324]
+. . + direct [id 859894 (species)]
+. . . BLASTing [17 sqs] ....
+. . . Removed [0/33] hits due to insufficient coverage
+. . . Identified [11] clusters
+. . + subtree [id 859894 (species)]
+. . + parent [id 859894]
+. . . + subtree [id 1936090 (subspecies)]
+. . + parent [id 859894]
+. . . + subtree [id 1648459 (subspecies)]
+. + parent [id 9324]
+. . + subtree [id 175627 (species)]
+. + parent [id 9324]
+. . + subtree [id 65614 (species)]
+. + parent [id 9324]
+. . + subtree [id 54089 (species)]
+. + parent [id 9324]
+. . + subtree [id 54088 (species)]
+. + parent [id 9324]
+. . + subtree [id 54087 (species)]
+. + parent [id 9324]
+. . + direct [id 54085 (species)]
+. . . BLASTing [40 sqs] ....
+. . . Removed [0/654] hits due to insufficient coverage
+. . . Identified [10] clusters
+. . + subtree [id 54085 (species)]
+. . . BLASTing [28 sqs] ....
+. . . Removed [0/322] hits due to insufficient coverage
+. . . Identified [6] clusters
+. . + parent [id 54085]
+. . . + subtree [id 172274 (subspecies)]
+. . + parent [id 54085]
+. . . + subtree [id 172273 (subspecies)]
+. . + parent [id 54085]
+. . . + subtree [id 172272 (subspecies)]
+. + parent [id 9324]
+. . + subtree [id 54084 (species)]
+. + parent [id 9324]
+. . + subtree [id 54083 (species)]
+. + parent [id 9324]
+. . + subtree [id 54082 (species)]
+. + parent [id 9324]
+. . + subtree [id 54081 (species)]
+. + parent [id 9324]
+. . + subtree [id 54080 (species)]
+. + parent [id 9324]
+. . + direct [id 54079 (species)]
+. . . BLASTing [619 sqs] ....
+. . . Removed [0/64325] hits due to insufficient coverage
+. . . Identified [9] clusters
+. . + subtree [id 54079 (species)]
+. . . BLASTing [8 sqs] ....
+. . . Removed [0/24] hits due to insufficient coverage
+. . . Identified [3] clusters
+. . + parent [id 54079]
+. . . + subtree [id 1648429 (subspecies)]
+. . + parent [id 54079]
+. . . + subtree [id 1648428 (subspecies)]
+. + parent [id 9324]
+. . + subtree [id 41893 (species)]
+. + parent [id 9324]
+. . + direct [id 9325 (species)]
+. . . BLASTing [4 sqs] ....
+. . . Removed [0/4] hits due to insufficient coverage
+. . . Identified [4] clusters
+. . + subtree [id 9325 (species)]
+. . . BLASTing [40 sqs] ....
+. . . Removed [132/894] hits due to insufficient coverage
+. . . Identified [6] clusters
+. . + parent [id 9325]
+. . . + subtree [id 54091 (subspecies)]
+. . + parent [id 9325]
+. . . + subtree [id 54090 (subspecies)]
+[1/1]
+----------------------------------------------
+Completed stage CLUSTER: [2022-02-24 12:21:54]
+----------------------------------------------
+-----------------------------------------------
+Starting stage CLUSTER^2: [2022-02-24 12:21:54]
+-----------------------------------------------
+Loading clusters ...
+Done. Only one cluster set -- skipping cluster^2
+Dropping all clusters of < 3 sqs ...
+Renumbering clusters ...
+Saving ...
+------------------------------------------------
+Completed stage CLUSTER^2: [2022-02-24 12:21:54]
+------------------------------------------------
+-------------------------------------------
+Completed pipeline at [2022-02-24 12:21:54]
+-------------------------------------------

@@ -1,0 +1,4 @@
+Filepath: /Users/gracekilroy/Downloads/ncbi/bin/makeblastdb, version: 2.12.0
+
+Filepath: /Users/gracekilroy/Downloads/ncbi/bin/blastn, version: 2.12.0
+

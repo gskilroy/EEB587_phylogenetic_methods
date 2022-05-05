@@ -1,0 +1,7 @@
+DNA, Aligned_Cluster_2_Ntax_22_Gene_elongation_factor_1-alpha = 1-516
+DNA, Aligned_Cluster_3_Ntax_21_Gene_abdominal_a = 517-1146
+DNA, Aligned_Cluster_4_Ntax_22_Gene_ = 1147-1461
+DNA, Aligned_Cluster_6_Ntax_19_Gene_uv_opsin = 1462-1897
+DNA, Aligned_Cluster_7_Ntax_19_Gene_ = 1898-2478
+DNA, Aligned_Cluster_8_Ntax_14_Gene_ = 2479-3149
+DNA, Aligned_mtDNA = 3150-3870
