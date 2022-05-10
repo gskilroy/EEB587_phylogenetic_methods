@@ -3,25 +3,24 @@ title: "Final project"
 output: html_document
 ---
 
-##Rubric
+###Rubric
 
-x pts | Create randomly-simulated trees
+x pts | Define research parameters of question - exploring magnitudes of integration and potential evolvability
 
-x pts | Compared shared clades between (my tree) and simulated trees
+x pts | Pull in tree data  
 
-x pts | Create easily interpretable graphs 
+x pts | Simulate data for magnitudes of integration following Grabowski and Porto 2017
 
-x pts | Evaluate whether tree is likely to appear within simulation 
+x pts | Explore how standardizing by size effects potential evolvability, compare with known tree
 
+x pts | Create visual interpretation 
 
-
-
-```{r setup, include=FALSE}
-
-```
+x pts | run a power analysis based on these results to determine minimum sample size needed for my dissertation data collection
 
 
+####
 
-```{r cars}
-```
+
+
+
 
