@@ -11,8 +11,6 @@ x pts | Pull in tree data
 
 x pts | Simulate data for magnitudes of integration following Grabowski and Porto 2017
 
-x pts | Explore how standardizing by size effects potential evolvability, compare with known tree
-
 x pts | Create visual interpretation 
 
 x pts | run a power analysis based on these results to determine minimum sample size needed for my dissertation data collection
@@ -20,7 +18,49 @@ x pts | run a power analysis based on these results to determine minimum sample 
 
 ####
 
+Important Definitions:
+- Magnitude of integration = The average of squared correlations among traits
+- Mean integration = Thee average relative degree to which evolvability is reduced due to conditioning on other traits
+- Mean respondability = The average length of the predicted response to selection; how quickly a population can respond to selection
+- Mean flexibility = The average cosine of angle between the direction of selection and the response vector
+- Mean evolvability = The average length of the multivariate response in the direction of selection for a given phenotypic variance/covariance matrix
+- Mean conditional evolvability = The average length of the multivariate response in the direction of selection for given phenotypic variance/covariance matrix
 
 
+
+
+Load tree data 
+
+``` {r}
+library(rotl)
+library(ape)
+taxa <- rotl::tnrs_match_names(name=c("Mustelidae", "Procyonidae", "Mephitidae", "Phocidae", "Otariidae", "Ursidae", "Canidae", "Herpestidae", "Eupleridae", "Hyaenidae", "Felidae"))
+tree <- rotl::tol_subtree(ott_id(taxa))
+plot(tree, cex = 0.8, label.offset = 0.1)
+
+```
+
+
+Simulate integration magnitude data for species in tree
+
+``` {r}
+library(clusterGeneration)
+library(truncnorm)
+library(matrixcalc)
+library(foreach)
+library(doParallel)
+library(moments)
+
+```
+
+
+Power analysis - effect size, sample size, significance level, power
+
+```{r}
+library(pwr)
+
+
+
+```
 
 

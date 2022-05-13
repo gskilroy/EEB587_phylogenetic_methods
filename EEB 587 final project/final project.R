@@ -18,11 +18,18 @@
 
 #Process-
 
-what is the sample size necessary to evaluate changes in magnitudes of integration how does standardizing by size effect
+#what is the sample size necessary to evaluate changes in magnitudes of integration how does standardizing by size effect
 
 #STEP 1 - replicate Machado et al 2018 (used Carniva), make sure R code is working and methods make sense
 #STEP 2 - explore standardizing Machado's data by size, how does evolvability change, compare with known tree
 #STEP 3 - theoretical aspect - lay out my research questions and how the above results inform my research questions/methods. Use Grabowski and Porto findings to run a power analysis for my data informed by Machado Carnivora results
+
+
+#create variancce covariance matrix
+
+#pull in magnitude data from various papers for taxa
+#compare against tree
+
 
 
 
@@ -99,6 +106,29 @@ library(phangorn)
 tree <- rtree(10)
 allDescendants(tree)
 Descendants(tree, ((1+ape::Ntip(tree)):ape::Nnode(tree)), type="tips")
+
+
+
+install.packages("phylobase")
+library(phylobase)
+
+
+
+
+
+
+
+####
+primate_tree <- read.tree(file = "primate_newick")
+plot(primate_tree)
+
+
+
+
+
+
+
+
 
 
 
