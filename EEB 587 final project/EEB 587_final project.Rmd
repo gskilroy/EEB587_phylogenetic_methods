@@ -1,10 +1,9 @@
 ---
-title: "Final project"
+title: "Final project_EEB 587_Kilroy"
 output: html_document
 ---
 
-###Rubric
-
+**Rubric**
 x pts | Define research parameters of question - exploring magnitudes of integration and potential evolvability
 
 x pts | Pull in tree data  
@@ -16,9 +15,16 @@ x pts | Create visual interpretation
 x pts | run a power analysis based on these results to determine minimum sample size needed for my dissertation data collection
 
 
-####
+##########
 
-Important Definitions:
+**Project Summary**
+This project looks at the problem of small sample sizes in cranial integration and evolvability analyses as compared with phylogenetic trees. Data from the literature are used to illustrate this problem across primate taxa. The importance of robust sampling in integration and evolvability research is explored through power analyses. 
+
+A power analysis and data inacccuracy analysis is run for my expected dissertation data. 
+
+
+
+**Important Definitions:**
 - Magnitude of integration = The average of squared correlations among traits
 - Mean integration = Thee average relative degree to which evolvability is reduced due to conditioning on other traits
 - Mean respondability = The average length of the predicted response to selection; how quickly a population can respond to selection
@@ -28,39 +34,192 @@ Important Definitions:
 
 
 
-
-Load tree data 
+**PART 1: Input tree data**
 
 ``` {r}
+#load packages
 library(rotl)
 library(ape)
-taxa <- rotl::tnrs_match_names(name=c("Mustelidae", "Procyonidae", "Mephitidae", "Phocidae", "Otariidae", "Ursidae", "Canidae", "Herpestidae", "Eupleridae", "Hyaenidae", "Felidae"))
-tree <- rotl::tol_subtree(ott_id(taxa))
-plot(tree, cex = 0.8, label.offset = 0.1)
+library(MASS)
 
 ```
 
 
-Simulate integration magnitude data for species in tree
+The following tree is constructed from from Open Tree. The taxa have been individually identified in the code so as to match the taxonomic names included in the data discussed.  
 
-``` {r}
-library(clusterGeneration)
-library(truncnorm)
-library(matrixcalc)
-library(foreach)
-library(doParallel)
-library(moments)
+The following five taxonomic groups were used in a 2019 paper by Neaux and colleagues. 
+Hominoidea = 23
+Cercopithecinae = 28
+Colobinae = 19
+Platyrrhini = 35
+Lemuriformes = 20
+Lorisiformes = 18
 
-```
-
-
-Power analysis - effect size, sample size, significance level, power
+A total of 29 landmarks were recorded by the authors on each specimen. 
 
 ```{r}
-library(pwr)
-
-
+taxa.groups <- rotl::tnrs_match_names(name=c("Hominoidea", "Cercopithecinae", "Colobinae", "Platyrrhini", "Lemuriformes", "Lorisiformes"))
+taxa.tree <- tol_induced_subtree(ott_ids = ott_id(taxa.groups))
+plot(taxa.tree, cex = 0.8, label.offset = 0.1)
 
 ```
 
 
+
+The following tree focuses on the species of Hominoidea presented by Neaux et al. (2019). There are 8 species included in the Hominoidea taxonomic group. The authors included 2-3 specimens from each species.
+``` {r}
+homo.species <- rotl::tnrs_match_names(name=c("Bunopithecus hoolock", "Gorilla beringei", "Homo sapiens", "Hylobates lar", "Nomascus leucogenys", "Pan troglodytes", "Pongo abelii", "Symphalangus syndactylus"))
+homo.tree <- tol_induced_subtree(ott_ids = ott_id(homo.species))
+plot(homo.tree, cex = 0.8, label.offset = 0.1)
+
+```
+
+
+
+
+
+**PART 2: Problem of small sample sizes**
+
+Number of specimems included for each taxa from Neaux et al. (2019):
+Hominoidea = 23
+Cercopithecinae = 28
+Colobinae = 19
+Platyrrhini = 35
+Lemuriformes = 20
+Lorisiformes = 18
+
+``` {r}
+
+Ind <- 23 #number of Hominoidea specimems
+Ac <- 0.05 #accepted inaccuracy
+MI <- 0.46 #assumed integration  
+Ntrait <- 29 #number of traits
+
+#Function provided by Grabowski and Porto 2017
+howmany.fxn<-function(Ac,MI,Ntrait){
+  DR= 0.822043217555314 + 1.02667649509627*MI/(7429^MI - 1.12649405122359) + 88.1381620057372/(0.850024841665574 + (47.1965992371813*MI)^(47.1965992371813*MI + 1.10014941587615^(1.04766577842044^Ntrait)))
+  CR= 1.51028131874091*MI + 0.00276645385268465*Ntrait - 1.14081520578666 - DR*MI^2 - 0.194008409646132*log(DR) - 0.0272909673397902*Ntrait*MI^2
+  DC= 1.19085679789253*Ntrait^2
+  CC= 17.4834144510899/Ntrait^2 - 2.04072681947218
+  DE= 3.0478004253639*MI + 0.0272519337861271*MI*Ntrait
+  CE= 0.196276772596919*log(MI) - 0.74172233488427 - 0.197130689419141*log(DE)
+  CF= 0.00534287803210608*Ntrait + 6.7227280875058*sqrt(MI) - 2.94464879434845 - 4.83017188052178*MI
+  DF= -0.00023332500071299*Ntrait*CF^7/MI
+  DR2= 1.09375/MI^2
+  CR2= 6.69482484957354e-5*DR2 - 0.774908241545569 - MI - 0.188495982853889*log(DR2)
+  CI= (15.9856266849758 + 64.4425720681751*MI)/Ntrait^2 - 2.17006400602668 - 0.0173392558459841*log(MI) - 0.265231382533379*MI*log(MI)
+  DI= -5.63497435204805 - 11.3730576374658*log(MI)
+  
+  IndR=(Ac/DR)^(1/CR)
+  IndC=(Ac/DC)^(1/CC)
+  IndE=(Ac/DE)^(1/CE)
+  IndI=(Ac/DI)^(1/CI)
+  IndF=(Ac/DF)^(1/CF)
+  IndR2=(Ac/DR2)^(1/CR2)
+  
+  if(is.nan(IndR)==TRUE) IndR=NA else  if(IndR<=Ntrait+1) IndR=Ntrait+1
+  if(is.nan(IndE)==TRUE) IndE=NA else if(IndE<=Ntrait+1) IndE=Ntrait+1
+  if(is.nan(IndC)==TRUE) IndE=NA else if(IndC<=Ntrait+1) IndC=Ntrait+1
+  if(is.nan(IndR2)==TRUE) IndR2=NA else if(IndR2<=Ntrait+1) IndR2=Ntrait+1
+  if(is.nan(IndI)==TRUE) IndI=NA else if(IndI<=Ntrait+1) IndI=Ntrait+1
+  if(is.nan(IndF)==TRUE) IndF=NA else if(IndF<=Ntrait+1) IndF=Ntrait+1
+  
+  Stats=as.data.frame(rbind(IndR,IndE,IndC,IndI,IndR2,IndF))
+  return(Stats)
+}
+
+
+howMany.Hominoidea<-howmany.fxn(Ind,MI,Ntrait)
+print(howMany.Hominoidea)
+
+```
+The above results indicate that a minimum of 30 individuals would be necessary to calculate integration magnitude and evolvability. These results can be extrapolated to the additional taxa presented in the cited paper. This analysis is meant as an example rather than a specific critique; however, it is a common problem within the literture for small sample sizes to be used to make an argument for rates of evolvability between taxonomic groups. 
+
+
+
+**PART 3a: Power analysis for my dissertation data**
+``` {r}
+Ind <- 110 #number of individuals I expect to have within each group
+Ac <- 0.05 #accepted inaccuracy
+MI <- 0.463 #average cranial integration in Homo Sapiens
+Ntrait <- 41 #number of traits
+
+#Function provided by Grabowski and Porto 2017
+howmany.fxn<<-function(Ac,MI,Ntrait){
+  DR= 0.822043217555314 + 1.02667649509627*MI/(7429^MI - 1.12649405122359) + 88.1381620057372/(0.850024841665574 + (47.1965992371813*MI)^(47.1965992371813*MI + 1.10014941587615^(1.04766577842044^Ntrait)))
+  CR= 1.51028131874091*MI + 0.00276645385268465*Ntrait - 1.14081520578666 - DR*MI^2 - 0.194008409646132*log(DR) - 0.0272909673397902*Ntrait*MI^2
+  DC= 1.19085679789253*Ntrait^2
+  CC= 17.4834144510899/Ntrait^2 - 2.04072681947218
+  DE= 3.0478004253639*MI + 0.0272519337861271*MI*Ntrait
+  CE= 0.196276772596919*log(MI) - 0.74172233488427 - 0.197130689419141*log(DE)
+  CF= 0.00534287803210608*Ntrait + 6.7227280875058*sqrt(MI) - 2.94464879434845 - 4.83017188052178*MI
+  DF= -0.00023332500071299*Ntrait*CF^7/MI
+  DR2= 1.09375/MI^2
+  CR2= 6.69482484957354e-5*DR2 - 0.774908241545569 - MI - 0.188495982853889*log(DR2)
+  CI= (15.9856266849758 + 64.4425720681751*MI)/Ntrait^2 - 2.17006400602668 - 0.0173392558459841*log(MI) - 0.265231382533379*MI*log(MI)
+  DI= -5.63497435204805 - 11.3730576374658*log(MI)
+  
+  IndR=(Ac/DR)^(1/CR)
+  IndC=(Ac/DC)^(1/CC)
+  IndE=(Ac/DE)^(1/CE)
+  IndI=(Ac/DI)^(1/CI)
+  IndF=(Ac/DF)^(1/CF)
+  IndR2=(Ac/DR2)^(1/CR2)
+  
+  if(is.nan(IndR)==TRUE) IndR=NA else  if(IndR<=Ntrait+1) IndR=Ntrait+1
+  if(is.nan(IndE)==TRUE) IndE=NA else if(IndE<=Ntrait+1) IndE=Ntrait+1
+  if(is.nan(IndC)==TRUE) IndE=NA else if(IndC<=Ntrait+1) IndC=Ntrait+1
+  if(is.nan(IndR2)==TRUE) IndR2=NA else if(IndR2<=Ntrait+1) IndR2=Ntrait+1
+  if(is.nan(IndI)==TRUE) IndI=NA else if(IndI<=Ntrait+1) IndI=Ntrait+1
+  if(is.nan(IndF)==TRUE) IndF=NA else if(IndF<=Ntrait+1) IndF=Ntrait+1
+  
+  Stats=as.data.frame(rbind(IndR,IndE,IndC,IndI,IndR2,IndF))
+  return(Stats)
+}
+
+howMany<-howmany.fxn(Ind,MI,Ntrait)
+print(howMany)
+```
+This power analysis suggests that a minimum of 42 individuals is required to estimate integration magnitude and evolvability for human crania. 
+
+
+
+**PART 3b: Expected innacuracy within my dissertation data**
+
+``` {r}
+Ind <- 110 #number of individuals I expect to have within each group
+Ac <- 0.05 #accepted inaccuracy
+MI <- 0.463 #average cranial integration in Homo Sapiens
+Ntrait <- 41 #number of traits
+
+#Function provided by Grabowski and Porto 2017
+howInaccurate.fxn<-function(Ind,MI,Ntrait){
+  DR= 0.822043217555314 + 1.02667649509627*MI/(7429^MI - 1.12649405122359) + 88.1381620057372/(0.850024841665574 + (47.1965992371813*MI)^(47.1965992371813*MI + 1.10014941587615^(1.04766577842044^Ntrait)))
+  CR= 1.51028131874091*MI + 0.00276645385268465*Ntrait - 1.14081520578666 - DR*MI^2 - 0.194008409646132*log(DR) - 0.0272909673397902*Ntrait*MI^2
+  DC= 1.19085679789253*Ntrait^2
+  CC= 17.4834144510899/Ntrait^2 - 2.04072681947218
+  DE= 3.0478004253639*MI + 0.0272519337861271*MI*Ntrait
+  CE= 0.196276772596919*log(MI) - 0.74172233488427 - 0.197130689419141*log(DE)
+  CF= 0.00534287803210608*Ntrait + 6.7227280875058*sqrt(MI) - 2.94464879434845 - 4.83017188052178*MI
+  DF= -0.00023332500071299*Ntrait*CF^7/MI
+  DR2= 1.09375/MI^2
+  CR2= 6.69482484957354e-5*DR2 - 0.774908241545569 - MI - 0.188495982853889*log(DR2)
+  CI= (15.9856266849758 + 64.4425720681751*MI)/Ntrait^2 - 2.17006400602668 - 0.0173392558459841*log(MI) - 0.265231382533379*MI*log(MI)
+  DI= -5.63497435204805 - 11.3730576374658*log(MI)
+  
+  Inacc_R=DR*(Ind)^CR
+  Inacc_C=DC*(Ind)^CC
+  Inacc_E=DE*(Ind)^CE
+  Inacc_I=DI*(Ind)^CI
+  Inacc_F=DF*(Ind)^CF
+  Inacc_R2=DR2*(Ind)^CR2
+  
+  
+  Stats=as.data.frame(rbind(Inacc_R,Inacc_E,Inacc_C,Inacc_I,Inacc_R2,Inacc_F))
+  return(Stats)
+}
+
+howInaccurate<-howInaccurate.fxn(Ind,MI,Ntrait)
+print(howInaccurate)
+
+```
